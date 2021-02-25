@@ -1,4 +1,58 @@
 import numpy as np
+
+class Intersection_Info_Type:
+  def __init__(self):
+    self.Streets_in = []
+    self.Streets_out = []
+
+class Route_Info_Type:
+  def __init__(self, Streets):
+    self.Streets = Streets
+
+
+def Read_input(file_name):
+    Lines = open(file_name+".txt","r").readlines()
+    
+    # Common varibles
+    [D_str, I_str, S_str, V_str, F_str] = Lines[0].split()
+    D = int(D_str)
+    I = int(I_str)
+    S = int(S_str)
+    V = int(V_str)
+    F = int(F_str)
+    
+    Street_info = {}
+    Intersection_info = []
+    Route_Info = []
+    
+    
+    for i in range(I):
+        Intersection_info.append(Intersection_Info_Type())
+    
+    # Streets
+    for i in range(1, S+1):
+        [I_begin_str, I_end_str, Street_name, L_str] = Lines[i].split()
+        Street_info[Street_name] = int(L_str)
+        I_begin = int(I_begin_str)
+        I_end = int(I_end_str)
+        
+        Intersection_info[I_begin].Streets_out.append(Street_name)
+        Intersection_info[I_end].Streets_in.append(Street_name)
+    
+    
+    # Vehicles
+    for i in range(S+1, S+V+1):
+       Route_Info.append(Route_Info_Type(Lines[i].split()[1:]))
+    
+    #for i in range(V):
+    #   print (Route_Info[i].Streets)
+
+    return Street_info, Intersection_info, Route_Info
+
+
+
+
+
 def chooser(road_list_dict,car_list,inter_list):
     
     inter_road = {}
@@ -67,7 +121,13 @@ road_list_dict = {"r1":1,"r2":2,"r3":3}
 car_list = [["r1","r2","r3"],["r2","r1"]]
 inter_list = [["r2","r1"],["r3","r1"],["r2","r3"]]
     
-     
+road_list_dict,inter_list_class,car_list_class = Read_input(filename)
+
+for j in inter_list_class:
+  inter_list.append(i.Streets_in)
+
+for 
+
     
 output_dict = chooser(road_list_dict,car_list,inter_list)
 output(output_dict,"test")  

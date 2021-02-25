@@ -118,15 +118,18 @@ def output(output_dict,filename):
 
 
 road_list_dict = {"r1":1,"r2":2,"r3":3}
-car_list = [["r1","r2","r3"],["r2","r1"]]
-inter_list = [["r2","r1"],["r3","r1"],["r2","r3"]]
+car_list = []
+inter_list = []
+
+filename = "a"
     
 road_list_dict,inter_list_class,car_list_class = Read_input(filename)
 
-for j in inter_list_class:
-  inter_list.append(i.Streets_in)
+for item in inter_list_class:
+  inter_list.append(item.Streets_in)
 
-for 
+for item_car in car_list_class:
+  car_list.append(item_car.Streets)
 
     
 output_dict = chooser(road_list_dict,car_list,inter_list)
